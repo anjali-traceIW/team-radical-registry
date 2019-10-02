@@ -1,9 +1,29 @@
 from flask import Flask, jsonify
+from json import JSONEncoder
 from core.classes import Person
 import pymysql
 from param import *
+from datetime import datetime
+
+
+
+class MyJSONEncoder(JSONEncoder):
+    def default(self, o):
+        if isinstance(o, Person):
+            return {
+                "id": o.id,
+                "name": o.name,
+                "team": o.team,
+                "fave_drink": o.fave_drink,
+                "personality_trait": o.trait,
+                "height": o.height,
+                "date_of_birth": o.dob.strftime("%Y-%m-%d %H:%M:%S.%f"),
+                "most_likely_to": o.most_likely_to,
+                "fav": o.fave.__dict__
+            }
 
 app = Flask(__name__)
+app.json_encoder = MyJSONEncoder
 
 @app.route("/", methods=["GET"])
 def get_all_people_info():
