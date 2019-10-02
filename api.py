@@ -1,7 +1,15 @@
-from flask import Flask
+from flask import Flask, jsonify
+import Person
 
 app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
-def get_person_info():
-    pass
+def get_all_people_info():
+    # Get all people from db
+    return people
+
+@app.route("/person", methods=["GET"])
+def get_person_info(name):
+    # Get person info from db
+    return person
+
