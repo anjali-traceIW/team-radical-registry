@@ -26,7 +26,6 @@ def get_all_people_info():
     finally:
         connection.close()
     
-
     return jsonify(results)
 
 @app.route("/person/<person_id>", methods=["GET"])
@@ -35,4 +34,4 @@ def get_person_info(person_id):
     return person
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=8081, debug=True)
+    app.run(host="0.0.0.0", port=8081, debug=True)
