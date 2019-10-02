@@ -1,4 +1,5 @@
 from param import * 
+import pysql
 
 def select_many_query(query):
     try:
